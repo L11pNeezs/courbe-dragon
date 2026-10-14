@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Courbe du Dragon</title>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <p class="eyebrow">Algorithmie recursive</p>
+          <h1>Courbe du Dragon</h1>
+        </div>
+        <div class="controls">
+          <label for="depth-input">Iterations</label>
+          <input id="depth-input" type="number" min="0" max="17" step="1" value="5" required aria-describedby="depth-error" />
+          <label for="starting-turn-input">Premier virage</label>
+          <select id="starting-turn-input">
+            <option value="1">Droite</option>
+            <option value="0">Gauche</option>
+          </select>
+          <div class="length-control">
+            <span>Zoom</span>
+            <button id="zoom-out-button" type="button" aria-label="Dézoomer">−</button>
+            <output id="length-output" aria-live="polite">5 px</output>
+            <button id="zoom-in-button" type="button" aria-label="Zoomer">+</button>
+          </div>
+          <button id="draw-button" type="button">Dessiner</button>
+          <button id="reset-button" type="button">Effacer</button>
+        </div>
+      </header>
+
+      <p id="depth-error" role="alert" hidden></p>
+      <canvas id="dragon-canvas" aria-label="Dessin de la courbe du Dragon">
+        Votre navigateur ne prend pas en charge la balise canvas.
+      </canvas>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
