@@ -11,7 +11,9 @@ const zoomInButton = document.querySelector('#zoom-in-button')
 const lengthOutput = document.querySelector('#length-output')
 const drawButton = document.querySelector('#draw-button')
 const resetButton = document.querySelector('#reset-button')
-let lineLength = 5
+const baseLineLength = 5
+let zoomPercent = 100
+let lineLength = baseLineLength
 let dragonCurveInstructions = null
 let offsetX = 0
 let offsetY = 0
@@ -135,15 +137,16 @@ resetButton.addEventListener('click', () => {
   clearCanvas()
 })
 function changeZoom(step) {
-  lineLength = Math.min(20, Math.max(1, lineLength + step))
-  lengthOutput.value = `${lineLength} px`
-  zoomOutButton.disabled = lineLength === 1
-  zoomInButton.disabled = lineLength === 20
+  zoomPercent = Math.min(400, Math.max(20, zoomPercent + step))
+  lineLength = baseLineLength * zoomPercent / 100
+  lengthOutput.value = `${zoomPercent}%`
+  zoomOutButton.disabled = zoomPercent === 20
+  zoomInButton.disabled = zoomPercent === 400
   draw()
 }
 
-zoomOutButton.addEventListener('click', () => changeZoom(-1))
-zoomInButton.addEventListener('click', () => changeZoom(1))
+zoomOutButton.addEventListener('click', () => changeZoom(-10))
+zoomInButton.addEventListener('click', () => changeZoom(10))
 
 canvas.addEventListener('pointerdown', event => {
   if (event.button !== 0 || dragPointerId !== null || dragonCurveInstructions === null) {
